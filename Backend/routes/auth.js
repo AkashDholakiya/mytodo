@@ -5,7 +5,10 @@ const router = express.Router();
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = "akashworkI$ng"
+const fetchuser = require("../middleware/fetchuser")
 
+
+// Route 1 for creating user
 router.post('/createuser', [
     body('name', 'length of the name should be greater than 3').isLength({ min: 3 }),
     body('email', 'enter a valid email ').isEmail(),
@@ -46,7 +49,7 @@ router.post('/createuser', [
     }
 })
 
-// Authenticate a User : POST "/api/auth/login". No login required
+// Route 2 : Authenticate a User : POST "/api/auth/login". No login required
 router.post('/login', [
   body('email', 'enter a valid email ').isEmail(),
   body('password', 'password cannot be blank ').exists(),
@@ -81,5 +84,18 @@ router.post('/login', [
   }
 })
 
+
+// Route 3 : For logged in user details
+router.post('/getuser',fetchuser ,async (req,res) => {
+
+    try {
+      userId = req.user.id;
+      const user = await User.findById(userId).select("-password")
+      res.send(user)
+    } catch (error) {
+      console.error(err.message);
+      res.status(500).send("error occured");  
+    }
+});
 
 module.exports = router  
