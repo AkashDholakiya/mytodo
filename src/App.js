@@ -4,23 +4,25 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import Navbar from './Components/Navbar'
-import Home from './Components/Home'
+import Navbar from './Components/Navbar';
+import Home from './Components/Home';
 import About from './Components/About';
-import NoteContext from './Context/notes/noteContext';
+import NoteState from './Context/notes/NotesState';
 
 function App() {
   return (
     <>
-    <NoteContext>
+    <NoteState>
       <Router>
-        <Navbar/>
+        <Navbar/> 
+        <div className="container">
           <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/about" element={<About/>}/>
           </Routes>
+          </div>
       </Router>
-      </NoteContext>
+      </NoteState>
     </>
   );
 }
