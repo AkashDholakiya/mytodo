@@ -11,10 +11,10 @@ const NotesState = (props) => {
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
-                'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmYzVkMWU0ZjYyN2JkOGNmYjU2NzBiIn0sImlhdCI6MTY5NDM3NTc5Mn0.F-L43oWN5isVqvs0mfYlxfP-8q4pfK-7DR7SSd9wuus'
+                'auth-token' : localStorage.getItem('token') 
             },
-        })
-        const json = await response.json();
+        }) 
+         const json = await response.json();
         console.log("GetNotes : " + json);
         setnotes(json);
     } 
@@ -25,7 +25,7 @@ const NotesState = (props) => {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmYzVkMWU0ZjYyN2JkOGNmYjU2NzBiIn0sImlhdCI6MTY5NDM3NTc5Mn0.F-L43oWN5isVqvs0mfYlxfP-8q4pfK-7DR7SSd9wuus'
+                'auth-token' : localStorage.getItem('token') 
             },
             body : JSON.stringify({title,description,tag})
         })
@@ -39,7 +39,7 @@ const NotesState = (props) => {
             method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json',
-                'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmYzVkMWU0ZjYyN2JkOGNmYjU2NzBiIn0sImlhdCI6MTY5NDM3NTc5Mn0.F-L43oWN5isVqvs0mfYlxfP-8q4pfK-7DR7SSd9wuus'
+                'auth-token' : localStorage.getItem('token') 
             }, 
         })
         const json = await response.json(); 
@@ -55,7 +55,7 @@ const NotesState = (props) => {
             method : 'PUT',
             headers : {
                 'Content-Type' : 'application/json',
-                'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRmYzVkMWU0ZjYyN2JkOGNmYjU2NzBiIn0sImlhdCI6MTY5NDM3NTc5Mn0.F-L43oWN5isVqvs0mfYlxfP-8q4pfK-7DR7SSd9wuus'
+                'auth-token' : localStorage.getItem('token') 
             },
             body : JSON.stringify({title,description,tag})
         })
